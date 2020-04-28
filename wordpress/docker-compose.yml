@@ -1,11 +1,17 @@
+# docker-compose version
 version: '3.3'
 
+# definition of services
 services:
   db:
+    # image to build container from
     image: mysql:5.7
+    # volume mappings
     volumes:
       - temp_db_volume:/var/lib/mysql
+    # restart container in case of failures
     restart: always
+    # env variables
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -16,6 +22,7 @@ services:
     depends_on:
       - db
     image: wordpress:latest
+    # port mappings (host to docker)
     ports:
       - "8000:80"
     restart: always
