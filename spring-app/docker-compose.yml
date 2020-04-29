@@ -36,3 +36,14 @@ services:
       interval: 1m30s
       timeout: 10s
       retries: 3
+
+  pageviewapp:
+    image: springframeworkguru/springbootdocker
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - rabbitmq
+      - pageviewservice
+    environment:
+      SPRING_RABBITMQ_HOST: rabbitmq
